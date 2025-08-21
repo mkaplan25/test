@@ -1,0 +1,7 @@
+AlloyCraft License Agreement
+
+Copyright (c) 2024 AlloyCraft Team
+
+Permission is hereby granted to use this software for educational and research purposes.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
