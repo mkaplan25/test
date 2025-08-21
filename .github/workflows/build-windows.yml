@@ -75,4 +75,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: AlloyCraft-Windows-Installer
-        path: AlloyCraft_Setup.exe
+        path: installer/AlloyCraft_Setup.exe
