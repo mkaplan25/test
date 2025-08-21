@@ -29,6 +29,7 @@ jobs:
         pip install pyinstaller
         
     - name: Build Flutter Windows
+      working-directory: ./alloy_craft
       run: flutter build windows --release
       
     - name: Build Python Backend
@@ -41,7 +42,7 @@ jobs:
       shell: cmd
       run: |
         mkdir installer\files
-        xcopy /s /e /y build\windows\runner\Release\* installer\files\
+        xcopy /s /e /y alloy_craft\build\windows\runner\Release\* installer\files\
         copy Termodinamik\dist\service.exe installer\files\
         copy Termodinamik\dist\main.exe installer\files\
         
