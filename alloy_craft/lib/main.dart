@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:alloy_craft/binary_phase_display.dart';
-import 'package:alloy_craft/faz_grafik_ekrani.dart';
 import 'package:alloy_craft/flow_node.dart';
 import 'package:alloy_craft/save_load.dart';
 import 'package:alloy_craft/ternary_display.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:split_view/split_view.dart';
 import 'faz_webview_ekrani.dart';
 import 'periodic_table.dart';
-import 'faz_input_page.dart';
 import 'binary_phase_display.dart';
 import 'single_point_display.dart';
 
