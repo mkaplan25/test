@@ -15,7 +15,8 @@ jobs:
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.16.0'
+        flutter-version: '3.35.1'  # Versiyon güncellemesi
+        channel: 'stable'
         
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -30,7 +31,10 @@ jobs:
         
     - name: Build Flutter Windows
       working-directory: ./alloy_craft
-      run: flutter build windows --release
+      run: |
+        flutter config --no-analytics
+        flutter pub get
+        flutter build windows --release
       
     - name: Build Python Backend
       working-directory: ./Termodinamik
