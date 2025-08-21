@@ -3,15 +3,14 @@ name: Build Windows Installer
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build-windows:
-    runs-on: windows-latest
+    runs-on: windows-2022
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
@@ -30,10 +29,9 @@ jobs:
         pip install pyinstaller
         
     - name: Build Flutter Windows
-      working-directory: ./flutter_app
       run: flutter build windows --release
       
-    - name: Build Python executables
+    - name: Build Python Backend
       working-directory: ./Termodinamik
       run: |
         pyinstaller --onefile --add-data "FeC.tdb;." service.py
@@ -43,16 +41,15 @@ jobs:
       shell: cmd
       run: |
         mkdir installer\files
-        xcopy /s /e /y flutter_app\build\windows\runner\Release\* installer\files\
+        xcopy /s /e /y build\windows\runner\Release\* installer\files\
         copy Termodinamik\dist\service.exe installer\files\
         copy Termodinamik\dist\main.exe installer\files\
-        copy Termodinamik\FeC.tdb installer\files\
         
     - name: Build NSIS installer
       run: makensis installer\setup.nsi
       
     - name: Upload installer
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: AlloyCraft-Windows-Installer
         path: AlloyCraft_Setup.exe
