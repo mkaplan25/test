@@ -1,0 +1,19 @@
+{
+    "excluded_phases": [],
+    "phase_colors": {
+        "LIQUID": "gold",
+        "BCC_A2": "blue",
+        "FCC_A1": "black",
+        "CEMENTITE": "brown",
+        "M23C6": "red",
+        "M7C3": "orange",
+        "FCC_A1#2": "darkgreen"
+    },
+    "phase_labels": {
+        "CEMENTITE": "Cementite",
+        "BCC_A2": "Ferrit",
+        "FCC_A1": "Östenit",
+        "M23C6": "M₂₃C₆",
+        "M7C3": "M₇C₃"
+    }
+}

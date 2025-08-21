@@ -1,0 +1,2 @@
+/Users/kaplan/Desktop/flutter_deneme/alloy_craft/android/app/.cxx/Debug/2x1o1p2d/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/kaplan/Desktop/flutter_deneme/alloy_craft/android/app/.cxx/Debug/2x1o1p2d/armeabi-v7a/CMakeFiles/rebuild_cache.dir

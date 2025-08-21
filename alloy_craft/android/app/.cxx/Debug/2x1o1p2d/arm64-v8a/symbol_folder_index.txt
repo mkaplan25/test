@@ -1,0 +1,1 @@
+/Users/kaplan/Desktop/flutter_deneme/alloy_craft/build/app/intermediates/cxx/Debug/2x1o1p2d/obj/arm64-v8a
