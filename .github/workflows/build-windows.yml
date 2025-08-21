@@ -46,7 +46,7 @@ jobs:
       shell: cmd
       run: |
         mkdir installer\files
-        xcopy /s /e /y alloy_craft\build\windows\runner\Release\* installer\files\
+        xcopy /s /e /y alloy_craft\build\windows\x64\runner\Release\* installer\files\
         copy Termodinamik\dist\service.exe installer\files\
         copy Termodinamik\dist\main.exe installer\files\
         
