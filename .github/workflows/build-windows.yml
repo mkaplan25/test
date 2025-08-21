@@ -50,8 +50,26 @@ jobs:
         copy Termodinamik\dist\service.exe installer\files\
         copy Termodinamik\dist\main.exe installer\files\
         
+    - name: Check installer directory
+      shell: cmd
+      run: |
+        echo "Files in installer directory:"
+        dir installer\
+        echo "Files in installer\files directory:"
+        dir installer\files\
+
     - name: Build NSIS installer
-      run: makensis installer\setup.nsi
+      shell: cmd
+      run: |
+       echo "Running makensis..."
+       makensis installer\setup.nsi
+       if exist AlloyCraft_Setup.exe (
+        echo "Installer created successfully"
+        dir AlloyCraft_Setup.exe
+       ) else (
+        echo "ERROR: Installer was not created"
+        exit /b 1
+       )
       
     - name: Upload installer
       uses: actions/upload-artifact@v4
