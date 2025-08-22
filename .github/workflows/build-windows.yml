@@ -39,12 +39,48 @@ jobs:
         flutter config --no-analytics
         flutter pub get
         flutter build windows --release
-      
+  
     - name: Build Python Backend
       working-directory: ./Termodinamik
       run: |
-        pyinstaller --onefile --collect-all pywin32 --hidden-import=win32timezone --hidden-import=win32api --hidden-import=win32event --hidden-import=win32service --hidden-import=win32serviceutil --add-data "FeC.tdb;." service.py
-        pyinstaller --onefile --collect-all pycalphad --collect-all xarray --collect-all dask --hidden-import=pycalphad.core.composition_set --hidden-import=pycalphad.model --hidden-import=pycalphad.variables --hidden-import=pycalphad.core.utils --add-data "FeC.tdb;." main.py
+        # Service.exe için
+        pyinstaller --onefile `
+          --collect-all pywin32 `
+          --hidden-import=win32timezone `
+          --hidden-import=win32api `
+          --hidden-import=win32event `
+          --hidden-import=win32service `
+          --hidden-import=win32serviceutil `
+          --add-data "FeC.tdb;." `
+          service.py
+        
+        # Main.exe için - pycalphad ile ilgili tüm modülleri ekleyin
+        pyinstaller --onefile `
+          --collect-all pycalphad `
+          --collect-all xarray `
+          --collect-all dask `
+          --collect-all numpy `
+          --collect-all scipy `
+          --collect-all sympy `
+          --hidden-import=pycalphad.core.composition_set `
+          --hidden-import=pycalphad.model `
+          --hidden-import=pycalphad.variables `
+          --hidden-import=pycalphad.core.utils `
+          --hidden-import=pycalphad.core.phase_rec `
+          --hidden-import=pycalphad.core.calculate `
+          --hidden-import=pycalphad.core.equilibrium `
+          --hidden-import=pycalphad.io.database `
+          --hidden-import=pycalphad.plot `
+          --hidden-import=pycalphad.plot.binary `
+          --hidden-import=pycalphad.plot.ternary `
+          --hidden-import=pycalphad.plot.utils `
+          --hidden-import=pycalphad.core.solver `
+          --hidden-import=pycalphad.models `
+          --hidden-import=matplotlib `
+          --hidden-import=matplotlib.pyplot `
+          --hidden-import=matplotlib.backends.backend_agg `
+          --add-data "FeC.tdb;." `
+          main.py
         
     - name: Prepare installer files
       shell: cmd
@@ -65,7 +101,7 @@ jobs:
     - name: Build NSIS installer
       shell: cmd
       run: makensis installer\setup.nsi
-      
+  
     - name: Upload installer
       uses: actions/upload-artifact@v4
       with:
