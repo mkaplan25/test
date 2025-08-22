@@ -11,7 +11,33 @@ warnings.filterwarnings("ignore")
 from Phase_Configurator import get_phases_for_calculation
 
 # 📁 TDB dosyasını yükle
-tdb_path = r"/Users/kaplan/Desktop/AlloyCraft-yeni/Termodinamik/FeC.tdb"
+# Veritabanını yükle
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    # PyInstaller bundle içinde çalışıyor
+    base_path = sys._MEIPASS
+    tdb_path = os.path.join(base_path, "FeC.tdb")
+else:
+    # Normal Python çalışıyor - bir üst klasörde ara
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    tdb_path = os.path.join(parent_dir, "FeC.tdb")
+db = Database(tdb_path)
+# Veritabanını yükle
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    # PyInstaller bundle içinde çalışıyor
+    base_path = sys._MEIPASS
+    tdb_path = os.path.join(base_path, "FeC.tdb")
+else:
+    # Normal Python çalışıyor - bir üst klasörde ara
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    tdb_path = os.path.join(parent_dir, "FeC.tdb")
 db = Database(tdb_path)
 
 # ⚖️ Molar kütleler (TDB dosyasında kayıtlı elementler)
