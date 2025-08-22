@@ -44,7 +44,7 @@ jobs:
       working-directory: ./Termodinamik
       run: |
         pyinstaller --onefile --collect-all pywin32 --hidden-import=win32timezone --hidden-import=win32api --hidden-import=win32event --hidden-import=win32service --hidden-import=win32serviceutil --add-data "FeC.tdb;." service.py
-        pyinstaller --onefile --collect-all pycalphad --add-data "FeC.tdb;." --hidden-import=pycalphad.core.composition_set main.py
+        pyinstaller --onefile --collect-all pycalphad --collect-all xarray --collect-all dask --hidden-import=pycalphad.core.composition_set --hidden-import=pycalphad.model --hidden-import=pycalphad.variables --hidden-import=pycalphad.core.utils --add-data "FeC.tdb;." main.py
         
     - name: Prepare installer files
       shell: cmd
