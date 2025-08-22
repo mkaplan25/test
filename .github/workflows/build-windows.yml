@@ -43,7 +43,7 @@ jobs:
     - name: Build Python Backend
       working-directory: ./Termodinamik
       run: |
-        pyinstaller --onefile --collect-all pycalphad --add-data "FeC.tdb;." --hidden-import=pycalphad.core.composition_set service.py
+        pyinstaller --onefile --collect-all pywin32 --hidden-import=win32timezone --hidden-import=win32api --hidden-import=win32event --hidden-import=win32service --hidden-import=win32serviceutil --add-data "FeC.tdb;." service.py
         pyinstaller --onefile --collect-all pycalphad --add-data "FeC.tdb;." --hidden-import=pycalphad.core.composition_set main.py
         
     - name: Prepare installer files
