@@ -237,7 +237,18 @@ def main():
     print("Bu program faz ayarlarını yapmak içindir.")
     print("=" * 80)
 
-    tdb_path = r"C:\Users\user\PycharmProjects\AlloyCraft\Termodinamik\FeC.tdb"
+    import os
+    import sys
+
+    if getattr(sys, 'frozen', False):
+     # PyInstaller bundle içinde çalışıyor
+      base_path = sys._MEIPASS
+      tdb_path = os.path.join(base_path, "FeC.tdb")
+    else:
+     # Normal Python çalışıyor - bir üst klasörde ara
+      current_dir = os.path.dirname(os.path.abspath(__file__))
+      parent_dir = os.path.dirname(current_dir)
+      tdb_path = os.path.join(parent_dir, "FeC.tdb")
 
     try:
         configurator = PhaseConfigurator(tdb_path)

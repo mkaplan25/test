@@ -8,7 +8,19 @@ from Termodinamik.Phase_Configurator import get_phases_for_calculation
 from diger.faz_diyagrami_cizimleri_diger.Ternary_Isothermal_Section_Original import pressure
 
 # 📌 Veritabanını yükle
-tdb_path = r"C:\Users\user\PycharmProjects\AlloyCraft\Termodinamik\FeC.tdb"
+# Veritabanını yükle
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    # PyInstaller bundle içinde çalışıyor
+    base_path = sys._MEIPASS
+    tdb_path = os.path.join(base_path, "FeC.tdb")
+else:
+    # Normal Python çalışıyor - bir üst klasörde ara
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    tdb_path = os.path.join(parent_dir, "FeC.tdb")
 dbf = Database(tdb_path)
 all_elements = dbf.elements
 

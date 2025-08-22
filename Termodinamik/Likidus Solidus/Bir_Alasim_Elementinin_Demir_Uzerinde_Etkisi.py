@@ -6,7 +6,21 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # 🔹 Veritabanı ve molar kütleler
-db = Database(r"C:\Users\user\PycharmProjects\AlloyCraft\Termodinamik\FeC.tdb")
+# Veritabanını yükle
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    # PyInstaller bundle içinde çalışıyor
+    base_path = sys._MEIPASS
+    tdb_path = os.path.join(base_path, "FeC.tdb")
+else:
+    # Normal Python çalışıyor - bir üst klasörde ara
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    tdb_path = os.path.join(parent_dir, "FeC.tdb")
+db = Database(tdb_path)
+
 phases = list(db.phases.keys())
 M = {
         'FE': 55.845, 'C': 12.01, 'AL': 26.9815, 'B': 10.81, 'CO': 58.933, 'CR': 51.996,

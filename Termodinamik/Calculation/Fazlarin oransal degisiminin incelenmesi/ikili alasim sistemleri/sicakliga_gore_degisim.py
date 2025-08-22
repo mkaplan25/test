@@ -37,7 +37,19 @@ n_points = int(input("Kaç noktada hesaplama yapılsın (ör. 100): "))  # Daha 
 temps = np.linspace(T_start, T_end, n_points)
 
 # 📚 Veritabanı
-tdb_path = r"C:\Users\user\PycharmProjects\AlloyCraft\Termodinamik\FeC.tdb"
+# Veritabanını yükle
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    # PyInstaller bundle içinde çalışıyor
+    base_path = sys._MEIPASS
+    tdb_path = os.path.join(base_path, "FeC.tdb")
+else:
+    # Normal Python çalışıyor - bir üst klasörde ara
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(current_dir)
+    tdb_path = os.path.join(parent_dir, "FeC.tdb")
 dbf = Database(tdb_path)
 
 components = ['FE', element_x, 'VA']

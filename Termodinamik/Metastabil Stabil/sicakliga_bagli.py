@@ -93,7 +93,19 @@ for elem, x in zip(elements, x_elements):
 
 # Veritabanı yükle
 warnings.filterwarnings("ignore", category=UserWarning)
-dbf = Database(r"C:\\Users\\user\\PycharmProjects\\AlloyCraft\\Termodinamik\\FeC.tdb")
+import os
+import sys
+
+if getattr(sys, 'frozen', False):
+    # PyInstaller bundle içinde çalışıyor
+    base_path = sys._MEIPASS
+    tdb_path = os.path.join(base_path, "FeC.tdb")
+else:
+    # Normal Python çalışıyor - bir üst klasöre git
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    tdb_path = os.path.join(current_dir, "..", "FeC.tdb")
+
+dbf = Database(tdb_path)
 
 # ✅ Dinamik component listesi
 components = ['FE'] + elements + ['VA']
